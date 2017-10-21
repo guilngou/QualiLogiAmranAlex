@@ -34,7 +34,7 @@ public class AudioTest {
 	}
 
 	@Test
-	public void testAudio() throws OperationImpossible, InvariantBroken {
+	public void testConstructeurAudio() throws OperationImpossible, InvariantBroken {
 		assertNotNull(aa);
 		assertTrue(aa.getCode().equals("007"));
 		assertEquals(new Localisation("salle1", "rayon1"), aa.getLocalisation());
@@ -50,7 +50,7 @@ public class AudioTest {
 	
 	
 	@Test (expected = OperationImpossible.class)
-	public void testAudio2() throws OperationImpossible, InvariantBroken {
+	public void testConstructeurAudio2() throws OperationImpossible, InvariantBroken {
 		/* Test de : if (classification == null) {
         throw new OperationImpossible("Ctr Audio classification = "
                 + classification);*/
