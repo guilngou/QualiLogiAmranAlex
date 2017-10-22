@@ -29,7 +29,7 @@ public class AudioTest {
 	}
 
 	@Test (expected = OperationImpossible.class)
-	public void testEmprunter() throws OperationImpossible, InvariantBroken {
+	public void testEmprunterException() throws OperationImpossible, InvariantBroken {
 		aa.emprunter();
 	}
 
@@ -50,7 +50,7 @@ public class AudioTest {
 	
 	
 	@Test (expected = OperationImpossible.class)
-	public void testConstructeurAudio2() throws OperationImpossible, InvariantBroken {
+	public void testConstructeurAudioException() throws OperationImpossible, InvariantBroken {
 		/* Test de : if (classification == null) {
         throw new OperationImpossible("Ctr Audio classification = "
                 + classification);*/

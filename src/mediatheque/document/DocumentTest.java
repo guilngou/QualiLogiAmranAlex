@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import mediatheque.Genre;
@@ -47,21 +48,60 @@ public class DocumentTest {
 	@Test
 	public void testMetEmpruntable() throws OperationImpossible, InvariantBroken {
 		aa.metEmpruntable();
+		assertEquals(true, aa.estEmpruntable());
 	}
 	
-	@Test
-	public void testMetEmpruntable2() throws OperationImpossible, InvariantBroken {
+	@Test (expected = OperationImpossible.class)
+	public void testMetEmpruntableException1() throws OperationImpossible, InvariantBroken {
+		aa.metEmpruntable();
 		aa.metEmpruntable();
 	}
-
-	@Test
-	public void testMetConsultable() {
-		fail("Not yet implemented");
+	
+	@Test (expected = InvariantBroken.class)
+	public void testMetEmpruntableException2() throws OperationImpossible, InvariantBroken {
+		//TODO : test
+		//aa.emprunter();
+		//aa.metEmpruntable();
+		/**
+         * Safety property - emprunte => empruntable
+         * 
+         * @return if the document is in a safe state, i.e respects the invariant
+         */
+        /*public boolean invariant() {
+                return !(emprunte && !empruntable);
+        }*/
 	}
 
 	@Test
-	public void testEmprunter() {
-		fail("Not yet implemented");
+	public void testMetConsultable() throws OperationImpossible, InvariantBroken {
+		aa.metEmpruntable();
+		assertEquals(true, aa.estEmpruntable());
+		aa.metConsultable();
+		assertEquals(false, aa.estEmpruntable());
+	}
+	
+	@Test (expected = OperationImpossible.class)
+	public void testMetConsultableException1() throws OperationImpossible, InvariantBroken {
+		aa.metConsultable();
+	}
+	
+	@Test (expected = OperationImpossible.class)
+	public void testMetConsultableException2() throws OperationImpossible, InvariantBroken {
+		aa.metEmpruntable();
+		aa.emprunter();
+		aa.metConsultable();
+	}
+	
+
+	@Test
+	public void testEmprunter() throws InvariantBroken, OperationImpossible {
+		
+		aa.metEmpruntable();
+		System.out.println("nbEmprunts = " + aa.getNbEmprunts());
+		aa.emprunter();
+		System.out.println("nbEmprunts = " + aa.getNbEmprunts());
+		assertEquals(true, aa.estEmpruntable());
+		assertEquals(true, aa.estEmprunte());
 	}
 
 	@Test
