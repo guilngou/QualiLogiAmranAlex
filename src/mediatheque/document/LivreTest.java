@@ -40,6 +40,7 @@ public class LivreTest {
 		assertEquals(false, liv.estEmpruntable());
 		assertEquals(false, liv.estEmprunte());
 		assertEquals(0, liv.getNbEmprunts());
+		assertEquals(0, liv.getStat());
 	}
 	
 	@Test (expected = OperationImpossible.class)
@@ -49,11 +50,6 @@ public class LivreTest {
 
 	@Test
 	public void testInvariantLivre() throws InvariantBroken, OperationImpossible {
-		System.out.println("liv.invariant() : " + liv.invariant());
-		liv.metEmpruntable();
-		System.out.println("liv.invariant() : " + liv.invariant());
-		liv.metConsultable();
-		System.out.println("liv.invariant() : " + liv.invariant());
 		assertTrue(liv.invariant());
 	}
 	
