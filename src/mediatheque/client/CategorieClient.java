@@ -73,7 +73,6 @@ public class CategorieClient implements Serializable {
         }
 
         public void modifierCoefDuree(double coefDuree) {
-
                 this.coefDuree = coefDuree;
         }
 
