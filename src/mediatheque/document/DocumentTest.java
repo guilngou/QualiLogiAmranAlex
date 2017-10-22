@@ -136,6 +136,7 @@ public class DocumentTest {
 
 	@Test
 	public void testInvariant() throws InvariantBroken, OperationImpossible {
+		System.out.println("aa.invariant() : " + aa.invariant());
 		assertTrue(aa.invariant());
 	}
 
