@@ -95,23 +95,48 @@ public class DocumentTest {
 
 	@Test
 	public void testEmprunter() throws InvariantBroken, OperationImpossible {
-		
 		aa.metEmpruntable();
-		System.out.println("nbEmprunts = " + aa.getNbEmprunts());
+		//System.out.println("nbEmprunts = " + aa.getNbEmprunts());
+		int nbEmpruntsInitial = aa.getNbEmprunts();
 		aa.emprunter();
-		System.out.println("nbEmprunts = " + aa.getNbEmprunts());
+		//System.out.println("nbEmprunts = " + aa.getNbEmprunts());
+		assertEquals(aa.getNbEmprunts(), nbEmpruntsInitial + 1);
 		assertEquals(true, aa.estEmpruntable());
 		assertEquals(true, aa.estEmprunte());
 	}
 
 	@Test
-	public void testRestituer() {
-		fail("Not yet implemented");
+	public void testRestituer() throws InvariantBroken, OperationImpossible {
+		aa.metEmpruntable();
+		aa.emprunter();
+		aa.restituer();
+		assertEquals(false, aa.estEmprunte());
+	}
+	
+	@Test
+	public void testRestituerException() throws InvariantBroken, OperationImpossible {
+		try{
+			aa.metEmpruntable();
+			aa.restituer();
+	    } catch(OperationImpossible e) {
+	    	System.out.println("OperationImpossible : " + e);
+	    	assertTrue(e.toString().equals("mediatheque.OperationImpossible: Impossible de restituer un document non emprunte"));
+	    } 
+	}
+	
+	@Test
+	public void testRestituerException2() throws InvariantBroken, OperationImpossible {
+		try{
+			aa.restituer();
+	    } catch(OperationImpossible e) {
+	    	System.out.println("OperationImpossible : " + e);
+	    	assertTrue(e.toString().equals("mediatheque.OperationImpossible: Impossible de restituer un document non empruntable"));
+	    } 
 	}
 
 	@Test
-	public void testInvariant() {
-		fail("Not yet implemented");
+	public void testInvariant() throws InvariantBroken, OperationImpossible {
+		assertTrue(aa.invariant());
 	}
 
 }
